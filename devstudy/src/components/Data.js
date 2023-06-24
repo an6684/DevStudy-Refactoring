@@ -8,7 +8,9 @@ const Data=()=>{
     return (
       <div>
         <h2>{data.title}</h2>
-        <p>{data.content}</p>
+        <div className="wrap">
+          {typeof data.content==='function'?<data.content/>:<p>{data.content}</p>}
+        </div>
       </div>
     );
 }

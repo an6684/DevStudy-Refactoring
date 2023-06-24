@@ -9,8 +9,14 @@
 .main{
   font-size: 2rem;
   display: block;
+  margin: 2% 0;
 }
 
 .list{
+  font-size: 1.5rem;
+  font-weight: bold;
   display: flex;
+  width: 80%;
+  margin: 0 auto;
+  justify-content: space-around;
 }
