@@ -3,9 +3,14 @@
   padding: 0;
   text-decoration: none;
   color: #898989;
+  list-style-type: none;
 }
 
 .main{
-  font-size: 3rem;
+  font-size: 2rem;
   display: block;
+}
+
+.list{
+  display: flex;
 }

@@ -1,25 +1,36 @@
 import './styles/App.css';
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, NavLink, useParams } from 'react-router-dom'
 import Home from './pages/Home';
-import Nav from './components/Nav';
+import datas from './components/datas';
+import Data from './components/Data';
 
 function App() {
-  const htmlcss = encodeURIComponent('HTML/CSS');
+  const activeStyle = {
+    color: 'black',
+  }
+  const deactiveStyle = {
+      color: '#898989',
+  }
+  const style=({isActive}) => isActive ? activeStyle : deactiveStyle
+
   return (
     <div className="App">
-      <Nav/>
+      <ul className='list'>
+        <li>
+          <NavLink to="/" className='main'><h1>DevStudy</h1></NavLink>
+        </li>
+        {datas.map(data=>(
+          <li key={data.id}>
+            <NavLink to={`/datas/${data.id}`} style={style}>{data.title}</NavLink>
+          </li>
+        ))}
+
+
+      </ul>
       
       <Routes>
-        <Route path="/" element={ <Home/> } />
-        <Route path={"/"+htmlcss} element={ <div>HTML / CSS</div> } />
-        <Route path="/JavaScript" element={ <div>JavaScript</div> } />
-        <Route path="/DataBase" element={ <div>DataBase</div> } />
-        <Route path="/JSP" element={ <div>JSP</div> } />
-        <Route path="/Spring" element={ <div>Spring</div> } />
-        <Route path="/RegisterClass" element={ <div>Register Class</div> } />
-        <Route path="/Archive" element={ <div>Archive</div> } />
-        <Route path="/ManagerMode" element={ <div>Manager Mode</div> } />
-        <Route path="*" element={ <div>404 Not Found</div> } />
+        <Route exact path="/" element={ <Home/> } />
+        <Route path={"/datas/:dataId"} element={<Data/>} />
       </Routes>
 
     </div>
