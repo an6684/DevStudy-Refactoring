@@ -1,0 +1,8 @@
+#heart{
+    width: 40px;
+    height: 40px;
+}
+
+#heart i{
+    background-color: red;
+}

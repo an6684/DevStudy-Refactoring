@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import datas from './components/datas';
 import Data from './components/Data';
 import style from './constants/active-menu';
+import Avi from './pages/Avi';
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
       <Routes>
         <Route exact path="/" element={ <Home/> } />
         <Route path={"/datas/:dataId"} element={<Data/>} />
+        <Route path="/avi" element={<Avi/>} />
       </Routes>
 
     </div>

@@ -1,7 +1,7 @@
 import RegisterClass from "../pages/RegisterClass";
 //리스트 데이터
 const datas=[
-    {id:1, title:'HTML/CSS', content:'HTML / CSS'},
+    {id:1, title:'HTML/CSS', content:'HTML/CSS'},
     {id:2, title:'JavaScript',content:'JavaScript'},
     {id:3, title:'DataBase',content:'DataBase'},
     {id:4, title:'JSP',content:'JSP'},
