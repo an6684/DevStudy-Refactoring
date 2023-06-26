@@ -6,7 +6,7 @@ const datas=[
     {id:3, title:'DataBase',content:'DataBase'},
     {id:4, title:'JSP',content:'JSP'},
     {id:5, title:'Spring',content:'Spring'},
-    {id:6, title:'RegisterClass',content:RegisterClass},
+    {id:6, title:'RegisterClass',content:'RegisterClass'},
     {id:7, title:'Archive',content:'Archive'},
     {id:8, title:'ManagerMode',content:'ManagerMode'},
 ]

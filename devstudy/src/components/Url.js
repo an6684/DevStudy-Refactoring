@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import '../styles/Url.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
-import { faHeartSolid } from '@fortawesome/free-solid-svg-icons';
+import { faHeart as farHeart } from '@fortawesome/free-regular-svg-icons';
 
 function Url(){
     const location=useLocation();
@@ -23,18 +23,17 @@ function Url(){
     console.log(avi.isCartState)
     const [isCartState, setIsCartState] = useState(avi.isCartState);
     
-    useEffect(()=>{
-        if(isCartState){
-            //찜 했을 경우
-            const cartButton = document.getElementById('heart');
-
-            if (isCartState) {
-                cartButton.innerHTML = '<FontAwesomeIcon icon="fa-solid fa-heart" />'; // Filled heart icon
-            } else {
-                cartButton.innerHTML = '<FontAwesomeIcon icon={faHeart} />'; // Empty heart icon
-            }
+    useEffect(() => {
+        const cartButton = document.getElementById('heart');
+    
+        if (isCartState) {
+          // 찜 했을 경우
+          cartButton.classList.add('filled'); // Add filled class
+        } else {
+          // 찜 해제의 경우
+          cartButton.classList.remove('filled'); // Remove filled class
         }
-    },[isCartState]);
+    }, [isCartState]);
 
     const handleCartClick = () => {
         setIsCartState(!isCartState);
@@ -54,11 +53,15 @@ function Url(){
                 </div>
             </article>
             <article id="contents">
-                <div>
+                <div className='contents-box'>
                     <h3>{avi.title}</h3>
                     <p>{avi.content}</p>
                     <button id="heart" onClick={handleCartClick}>
-                        {isCartState ? <FontAwesomeIcon icon="fa-solid fa-heart" /> : <FontAwesomeIcon icon={faHeart} />}
+                        {isCartState ? (
+                        <FontAwesomeIcon icon={faHeart} className="heart-icon" />
+                        ) : (
+                        <FontAwesomeIcon icon={farHeart} className="heart-icon filled" />
+                        )}
                     </button>
                 </div>
             </article>

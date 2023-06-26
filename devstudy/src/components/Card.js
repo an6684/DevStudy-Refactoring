@@ -1,21 +1,10 @@
-import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/Card.css';
+import { useLocalStorageData } from '../constants/useLocalStorageData';
 
 function Card({subject}){
-    const [card, setCard]=useState([]);
-
-    useEffect(()=>{
-        //로컬 스토리지에서 데이터를 가져와 card 상태에 설정
-        const localStorageData=[];
-        for(let i=0;i<localStorage.length;i++){
-            const key=localStorage.key(i);
-            const data=JSON.parse(localStorage.getItem(key));
-            localStorageData.push(data);
-        }
-        setCard(localStorageData);
-    }, []);
-
+    //로컬스토리지 저장 데이터 선언
+    const card=useLocalStorageData();
     //띄어쓰기가 포함된 문자열을 url에 사용 가능한 형식으로 변환하는 함수
     const formatUrl = (string) => {
         return encodeURIComponent(string);
