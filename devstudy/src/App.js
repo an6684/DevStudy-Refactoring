@@ -2,9 +2,9 @@ import './styles/App.css';
 import { Routes, Route, NavLink } from 'react-router-dom'
 import Home from './pages/Home';
 import datas from './components/datas';
-import Data from './components/Data';
 import style from './constants/active-menu';
 import Avi from './pages/Avi';
+import Data from './components/Data';
 
 function App() {
 

@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
-import datas from '../components/datas';
+import { useLocation } from 'react-router-dom';
 import Url from '../components/Url';
 import Card from '../components/Card';
 import { useLocalStorageData } from '../constants/useLocalStorageData';
@@ -12,10 +10,8 @@ function Avi(){
     const subject=searchParams.get('subject');
     //로컬스토리지 저장 데이터 선언
     const card=useLocalStorageData();
-    //현재 주소의 subject와 동일한 subject 값 필터링
-    // const filteredCards=card.filter(data=>data.subject===subject);
-    // console.log(filteredCards)
-    // 주어진 subject와 일치하는 데이터를 필터링하여 중복 제거
+    //현재 주소의 subject와 동일한 subject 값을 필터링하고
+    //주어진 subject와 일치하는 데이터를 필터링하여 중복 제거
     const filteredCards = card.filter((data, index) => {
         return (
         data.subject === subject &&
