@@ -1,62 +1,163 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import datas from "../components/datas";
 import { useLocalStorageData } from "../constants/useLocalStorageData";
 
-function Edit({storageData}){
-    const [subject, setSubject] = useState('HTML/CSS');
-    const [title, setTitle] = useState('');
-    const [content, setContent] = useState('');
-    const [url, setUrl] = useState('');
-    const filteredDatas = datas.filter(data => data.id <= 5);
-    const localStorageData = useLocalStorageData();
-    const filteredData = localStorageData.filter(data => data.subject === subject);
-    const titleOptions = filteredData.map(data => data.title);
-    const txtTitle=JSON.stringify(storageData.filter(data=>data.title===title));
+function Edit({ storageData }) {
+  const [subject, setSubject] = useState('HTML/CSS');
+  const [title, setTitle] = useState('');
+  const [content, setContent] = useState('');
+  const [url, setUrl] = useState('');
 
-    return(
-        <>
-            <div className="edit-wrap">
-                <article>
-                    <select value={subject} onChange={(e) => setSubject(e.target.value)}>
-                        {filteredDatas.map((data) => (
-                        <option key={data.id} value={data.title}>
-                            {data.title}
-                        </option>
-                        ))}
-                    </select>
-                </article>
-                <article>
-                    <select value={title} onChange={(e) => setTitle(e.target.value)}>
-                        {titleOptions.map((option) => (
-                        <option key={option} value={option}>
-                            {option}
-                        </option>
-                        ))}
-                    </select>
-                </article>
-                <article>
-                    <input
-                        id="title"
-                        type="text"
-                        placeholder="Title"
-                        value={txtTitle}
-                        onChange={(e) => setTitle(e.target.value)}
-                    />
-                </article>
-                {/* <article>
-                    <select value={subject} onChange={(e) => setSubject(e.target.value)}>
-                        {storageData.map((data) => (
-                            <option key={data.id} value={data.subject}>
-                                {data.subject}
-                            </option>
-                        ))}
-                    </select>
-                </article> */}
-            </div>
-        </>
-    )
+  const filteredDatas = datas.filter(data => data.id <= 5);
+  const localStorageData = useLocalStorageData();
+  const filteredData = localStorageData.filter(data => data.subject === subject);
+  const titleOptions = filteredData.map(data => data.title);
+
+  useEffect(() => {
+    const selectedData = filteredData.find(data => data.title === title);
+    if (selectedData) {
+      setContent(selectedData.content);
+      setUrl(selectedData.url);
+    } else {
+      setContent('');
+      setUrl('');
+    }
+  }, [title, filteredData]);
+
+  const handleTitleChange = (e) => {
+    const selectedTitle = e.target.value;
+    setTitle(selectedTitle);
+  };
+
+  const handleContentChange = (e) => {
+    const selectedContent = e.target.value;
+    setContent(selectedContent);
+  };
+
+  const handleUrlChange = (e) => {
+    const selectedUrl = e.target.value;
+    setUrl(selectedUrl);
+  };
+
+  return (
+    <>
+      <div className="edit-wrap">
+        <article>
+          <select value={subject} onChange={(e) => setSubject(e.target.value)}>
+            {filteredDatas.map((data) => (
+              <option key={data.id} value={data.title}>
+                {data.title}
+              </option>
+            ))}
+          </select>
+        </article>
+        <article>
+          <select value={title} onChange={handleTitleChange}>
+            {titleOptions.map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
+          </select>
+        </article>
+        <article>
+          <input
+            id="title"
+            type="text"
+            placeholder="Title"
+            value={title}
+            onChange={handleTitleChange}
+          />
+        </article>
+        <article>
+          <textarea
+            id="content"
+            placeholder="Content"
+            value={content}
+            onChange={handleContentChange}
+          ></textarea>
+        </article>
+        <article>
+          <input
+            id="url"
+            type="text"
+            placeholder="URL"
+            value={url}
+            onChange={handleUrlChange}
+          />
+        </article>
+      </div>
+    </>
+  );
 }
+
 export default Edit;
+
+
+
+
+
+// import { useState } from 'react';
+// import datas from "../components/datas";
+// import { useLocalStorageData } from "../constants/useLocalStorageData";
+
+// function Edit({storageData}){
+//     const [subject, setSubject] = useState('HTML/CSS');
+//     const [title, setTitle] = useState('');
+//     const [content, setContent] = useState('');
+//     const [url, setUrl] = useState('');
+//     const filteredDatas = datas.filter(data => data.id <= 5);
+//     const localStorageData = useLocalStorageData();
+//     const filteredData = localStorageData.filter(data => data.subject === subject);
+//     const titleOptions = filteredData.map(data => data.title);
+//     const txtTitle = JSON.stringify(storageData.filter(data => data.title === title));
+//     const parsedData = JSON.parse(txtTitle);
+//     const extractedTitle = parsedData[0]?.title;
+
+//     return(
+//         <>
+//             <div className="edit-wrap">
+//                 <article>
+//                     <select value={subject} onChange={(e) => setSubject(e.target.value)}>
+//                         {filteredDatas.map((data) => (
+//                         <option key={data.id} value={data.title}>
+//                             {data.title}
+//                         </option>
+//                         ))}
+//                     </select>
+//                 </article>
+//                 <article>
+//                     <select value={title} onChange={(e) => setTitle(e.target.value)}>
+//                         {titleOptions.map((option) => (
+//                         <option key={option} value={option}>
+//                             {option}
+//                         </option>
+//                         ))}
+//                     </select>
+//                 </article>
+//                 <article>
+//                     <input
+//                         id="title"
+//                         type="text"
+//                         placeholder="Title"
+//                         value={extractedTitle}
+//                         onChange={(e) => setTitle(e.target.value)}
+//                     />
+//                 </article>
+//                 {/* <article>
+//                     <select value={subject} onChange={(e) => setSubject(e.target.value)}>
+//                         {storageData.map((data) => (
+//                             <option key={data.id} value={data.subject}>
+//                                 {data.subject}
+//                             </option>
+//                         ))}
+//                     </select>
+//                 </article> */}
+//             </div>
+//         </>
+//     )
+// }
+// export default Edit;
 
 
 
