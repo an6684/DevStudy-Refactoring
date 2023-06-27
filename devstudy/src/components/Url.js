@@ -8,9 +8,7 @@ import { faHeart as farHeart } from '@fortawesome/free-regular-svg-icons';
 function Url(){
     const location=useLocation();
     const searchParams=new URLSearchParams(location.search);
-    const subject=searchParams.get('subject');
     const title=searchParams.get('title');
-    const content=searchParams.get('content');
 
     let avi, index;
 

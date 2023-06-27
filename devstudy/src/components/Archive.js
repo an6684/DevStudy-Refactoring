@@ -1,13 +1,12 @@
 import { useLocalStorageData } from '../constants/useLocalStorageData';
 import { Link } from 'react-router-dom';
 import '../styles/Card.css';
-import Card from '../components/Card';
 
 const Archive=()=>{
     const card=useLocalStorageData();
     const cartCard=card.filter(data => data.isCartState === true);
-    console.log(cartCard)
-// 띄어쓰기가 포함된 문자열을 url에 사용 가능한 형식으로 변환하는 함수
+    // console.log(cartCard)
+    // 띄어쓰기가 포함된 문자열을 url에 사용 가능한 형식으로 변환하는 함수
     const formatUrl = (string) => {
         return encodeURIComponent(string);
     };

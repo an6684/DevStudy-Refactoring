@@ -3,7 +3,8 @@ import { useParams } from 'react-router-dom'
 import Card from "./Card";
 import RegisterClass from '../pages/RegisterClass';
 import { useLocalStorageData } from '../constants/useLocalStorageData';
-import Archive from '../pages/Archive';
+import Archive from './Archive';
+import ManagerMode from '../pages/ManagerMode';
 
 const Data=()=>{
     const {dataId}=useParams();
@@ -22,7 +23,7 @@ const Data=()=>{
                 {data.id === 6 && <RegisterClass />}
                 {data.id === 7 && <Archive /> }
                 {/* 찜한 순서대로 나열하는 방법찾아보기 */}
-                {/* {data.id === 8 && <ManagerMode />} */}
+                {data.id === 8 && <ManagerMode />}
             </div>
         </section>
       </>

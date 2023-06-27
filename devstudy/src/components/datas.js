@@ -1,4 +1,3 @@
-import RegisterClass from "../pages/RegisterClass";
 //리스트 데이터
 const datas=[
     {id:1, title:'HTML/CSS', content:'HTML/CSS'},
